@@ -1,7 +1,7 @@
 Pickups = new Mongo.Collection('pickups');
 if (Meteor.isClient) {
   //location starts at 0;
-  Session.setDefault(['location'], 0);
+  Session.setDefault(['location']);
 
   Template.requestPickup.helpers({
     location: function () {
@@ -20,23 +20,22 @@ if (Meteor.isClient) {
           location: location,
           owner: Meteor.userId(),
           username: Meteor.user().username,
-          createdAt: new Date()});
+          createdAt: new Date(),
+          status: 'pending'
+        });
       }
       function handleError(err) {
         console.log(err);
       }
       window.navigator.geolocation.getCurrentPosition(handleSuccess,handleError);
 
-      // Pickups.insert({
-      //   createdAt: new Date()
-      // });//end pickups insert
 
     }//end click event
   });//end requestPickup template
 
   Template.pendingPickups.helpers({
-    allPickups: function(){
-      return Pickups.find({});
+    pendingPickups: function(){
+      return Pickups.find({status: 'pending'});
     }
   });//end pendingPickups template
 

@@ -1,24 +1,49 @@
 <head>
   <title>lyft</title>
+  <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
 </head>
 
 <body>
   <h1>Welcome to Lyft!</h1>
   {{> loginButtons}}
   {{#if currentUser}}
-    {{> requestPickup}}
+    <div class="request-pickup">
+      {{> requestPickup}}
+    </div>
     {{> pendingPickups}}
   {{/if}}
 </body>
 
 <template name="requestPickup">
-  <button>Request Pick Up</button>
+  <button class="pure-button button-success">Request Pick Up</button>
   <p>You've requested a pick up at this location {{location}}.</p>
 </template>
 
 <template name="pendingPickups">
   <h2>Pending Pickups</h2>
-  {{#each allPickups}}
-    <li>{{location}} {{createdAt}}</li>
-  {{/each}}
+  <table class="pure-table pure-table-bordered">
+    <thead>
+        <tr>
+            <th>Location</th>
+            <th>UserName</th>
+            <th>Date</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+
+    <tbody>
+      {{#each pendingPickups}}
+
+        <tr>
+            <td>{{location}}</td>
+            <td>{{username}}</td>
+            <td>{{createdAt}}</td>
+            <td>{{status}}</td>
+        </tr>
+
+        {{/each}}
+
+      </tbody>
+    </table>
+
 </template>
