@@ -1,0 +1,24 @@
+<head>
+  <title>lyft</title>
+</head>
+
+<body>
+  <h1>Welcome to Lyft!</h1>
+  {{> loginButtons}}
+  {{#if currentUser}}
+    {{> requestPickup}}
+    {{> pendingPickups}}
+  {{/if}}
+</body>
+
+<template name="requestPickup">
+  <button>Request Pick Up</button>
+  <p>You've requested a pick up at this location {{location}}.</p>
+</template>
+
+<template name="pendingPickups">
+  <h2>Pending Pickups</h2>
+  {{#each allPickups}}
+    <li>{{location}} {{createdAt}}</li>
+  {{/each}}
+</template>
