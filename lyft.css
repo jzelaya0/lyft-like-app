@@ -9,7 +9,7 @@
       }
 
       .button-success {
-          background: rgb(28, 184, 65); /* this is a green */
+          background: rgb(28, 184, 65) !important; /* this is a green */
       }
 
       .button-error {
@@ -23,3 +23,7 @@
       .button-secondary {
           background: rgb(66, 184, 221); /* this is a light blue */
       }
+
+.main{
+  padding: 2em;
+}
